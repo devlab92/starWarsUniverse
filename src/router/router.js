@@ -4,23 +4,7 @@ import VueRouter from 'vue-router'
 Vue.use(VueRouter)
 
 export default new VueRouter({
-	// Mode pode ter duas opcoes HASH ou HISTORY. Isso mudara como ficara a URL no navegador
-	// HASH = URL: localhost:8080/#/new-user
-	// HISTORY = URL: localhost:8080/new-user
-	// Caso usar o HISTORY, ha necessidade de configuracao extra no servidor
-
 	mode: 'history',
-	//Se na URL for passado uma HASH como ancoragem
-	scrollBehavior(from, to, savedPosition) {
-		if (savedPosition) {
-			return savedPosition
-		} else if (to.hash) {
-			return {selector: to.hash, behavior: 'smooth'}
-		} else {
-			return {x: 0, y: 0, behavior: 'smooth'}
-		}
-
-	},
 	routes: [
 		{
 			path: '/',
@@ -30,9 +14,6 @@ export default new VueRouter({
 		{
 			path: '/people',
 			name: 'People',
-			// component: () => import('../views/user/Users'),
-			// Renderizacao de varios ROUTER-VIEWS que sao nomeados
-			// o router-viewr MENU esta declarado na tela APP
 			components: {
 				default: () => import('../views/people/People.vue')
 			},
