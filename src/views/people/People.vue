@@ -4,7 +4,11 @@
 
 		<ul>
 			<li v-for="(person, idx) in people" @click="showPerson(person.name)" :key="'key_'+idx">
-				{{person.name}}
+				<!-- <div> <button @click="getPersonImg(person)">IMG</button> {{person.name}}</div> -->
+				<div>
+					<button @click="getPersonImg(person)">IMG</button>
+					{{person.name}}
+				</div>
 				<div v-if="person.name == selectedPerson.name && showingPerson">
 					<Person :person="selectedPerson" />
 				</div>
@@ -21,10 +25,17 @@
 			params: { id }, 
 			query: {idade: '25', name: 'Ricardo'}
 		}">EDITAR USUARIO </router-link>-->
+
+		<div v-for="img in images" style>
+			<br />
+			<img :src="img" width="200px" height="auto" />
+			<br />
+		</div>
 	</section>
 </template>
 
 <script>
+import GoogleApi from '../../services/GoogleApi'
 import People from '../../services/People'
 import Starships from '../../services/Starships'
 import Person from '../../components/people/Person.vue'
@@ -39,8 +50,8 @@ export default {
 			selectedPerson: {},
 			showingPerson: false,
 			page: 1,
-			lastPage: 0
-
+			lastPage: 0,
+			images: []
 		}
 	},
 	beforeMount() {
@@ -53,6 +64,16 @@ export default {
 
 	},
 	methods: {
+		getPersonImg(person) {
+			if (localStorage.getItem('apiSelected') == 'google') {
+				GoogleApi.googleSearch(person.name)
+					.then((res) => {
+						res.data.items.map(el => this.images.push(el.link))
+					})
+			} else
+				this.images.push(People.getPersonImg(this.getUrlId(person.url)))
+
+		},
 		scrollTrigger() {
 			const sentinel = new IntersectionObserver((entries) => {
 				if (entries.some((entry) => entry.isIntersecting)) {
@@ -71,7 +92,7 @@ export default {
 			People.getAllPerson(this.page)
 				.then((res) => {
 					res.data.results.map(person => this.people.push(person))
-					this.lastPage = res.data.count%10 == 0 ? res.data.count : Math.trunc(res.data.count / 10 + 1)
+					this.lastPage = res.data.count % 10 == 0 ? res.data.count : Math.trunc(res.data.count / 10 + 1)
 					this.page++
 				})
 
@@ -82,7 +103,6 @@ export default {
 			// 		this.getAllPerson()
 			// }
 		},
-
 		async showPerson(name) {
 			let starshipRes = []
 			// Verifica se o nome do personagem passado é diferente do que está na variavel do personagem selecionado
@@ -110,7 +130,8 @@ export default {
 					})
 			}
 			this.showingPerson = !this.showingPerson
-		}
+		},
+
 	}
 }
 </script>

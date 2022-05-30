@@ -1,0 +1,33 @@
+{
+	"googleApi": {
+		"baseURL": "https://www.googleapis.com/customsearch",
+		"setConfigs" : {
+			"key": "AIzaSyBeJ4tUjjzH9h-ezQ3aaMYeNa5Ez09l02I",
+			"cx": "5fcd35b03cfbf7365",
+			"searchType": "image",
+			"num": 1	
+		},
+		"paramsToIncludeInSetConfigs" : {
+			"key": "//API Key",
+			"cx": "//O ID do mecanismo de busca programável para usar para esta solicitação.",
+			"searchType": "image //Restringe os resultados a arquivos de uma extensão especificada.",
+			"num": " //Número de resultados de pesquisa para retornar.",	
+			"fileType": "png //Restringe os resultados a arquivos de uma extensão especificada.",
+			"filter": "1 //Controla a ativação ou desativação do filtro de conteúdo duplicado.",
+			"imgSize": "huge //Especifica um tamanho para as imagens buscadas.",
+			"imgType": "//Retorna imagens de um tipo.(clipart, face, lineart, stock, photo, animated)"
+		}
+	},
+	"visualGuide":{
+		"baseUrl": "https://starwars-visualguide.com/assets/img/",
+		"search": {
+			"characters": "characters/",
+			"starships": "starships/",
+			"films": "films/",
+			"species": "species/",
+			"vehicles": "vehicles/",
+			"planets": "planets/"
+		}
+	}
+	
+}
