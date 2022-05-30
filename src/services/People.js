@@ -1,4 +1,6 @@
 import axios from 'axios'
+import GoogleApi from '../services/GoogleApi'
+import globalFn from './GlobalFunctions'
 const configs = require('../../apiConfigs.json')
 const visualGuideApi = configs.visualGuide
 const People = axios.create({
@@ -16,8 +18,18 @@ export default {
 	getPeopleByName(name) {
 		return People.get(`?search=${ name }`)
 	},
-	getPersonImg(id) {
-		return `${ visualGuideApi.baseUrl + visualGuideApi.search.characters + id }.jpg`
+	async getPersonImg(person) {
+		let link = ''
+			// Verifica qual api de imagens deve usar
+			if (localStorage.getItem('apiSelected') == 'google') {
+				await GoogleApi.googleSearch(person.name)
+					.then((res) => {
+						link =res.data.items[0].link
+					})
+			} else
+				link = `${ visualGuideApi.baseUrl + visualGuideApi.search.characters + globalFn.getUrlId(person.url) }.jpg`
+
+			return link
 	}
 
 }

@@ -26,7 +26,7 @@
 export default {
 	name: "Home",
 	beforeMount() {
-		window.onload(localStorage.setItem('apiSelected', 'google'))
+		window.onload = localStorage.setItem('apiSelected', 'google')
 	},
 	methods: {
 		setApi() {
