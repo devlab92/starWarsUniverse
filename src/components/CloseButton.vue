@@ -9,8 +9,7 @@
 
 <script>
 export default {
-	name: 'Loading',
-	props: ['loadingVerify']
+	name: 'CloseButton'
 }
 </script>
 <style scoped>
@@ -27,8 +26,9 @@ export default {
 	outline-offset: 0px;
 	transition: all .1s;
 }
-.closeButton__button:hover{
+.closeButton__button:hover, .closeButton__button:focus{
 	outline: 3px solid #fff;
+	box-shadow: 0 0 10px 10px black;
 	outline-offset: 3px;
 }
 </style>

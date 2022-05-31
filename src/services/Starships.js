@@ -1,4 +1,5 @@
 import axios from 'axios'
+import GoogleApi from '../services/GoogleApi'
 import globalFn from './GlobalFunctions'
 const configs = require('../../apiConfigs.json')
 const visualGuideApi = configs.visualGuide
@@ -9,9 +10,9 @@ const Starships = axios.create({
 
 export default {
 	// Retorna uma nave especifica de acordo com o id passado no parametro "id"
-	getStartshipById(id){
-		let starship = Starships.get(id)
-		starship.image = this.getStarshipImg(starship)
+	async getStartshipById(id){
+		let starship = await Starships.get(id)
+		starship.data.image = await this.getStarshipImg(starship.data)
 		return starship
 		
 	},
@@ -26,8 +27,6 @@ export default {
 			} else{
 				link = `${ visualGuideApi.baseUrl + visualGuideApi.search.starships + globalFn.getUrlId(starship.url) }.jpg`
 			}
-				
 			return link
 	}
-
 }

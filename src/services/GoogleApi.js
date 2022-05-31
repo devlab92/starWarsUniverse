@@ -4,8 +4,10 @@ const configs = require('../../apiConfigs.json')
 let queryParams = configs.googleApi.setConfigs
 
 function buildUrl(searchParam) {
-	if (!searchParam)
+	if (!searchParam){
+		console.log('parametro', searchParam)
 		return console.log('É preciso passar uma string para busca')
+	}
 	else
 		queryParams.q = searchParam+' star wars'
 

@@ -11,8 +11,8 @@ const People = axios.create({
 export default {
 	// Retorna 10 personagens por página.
 	// Numero da página passado como parametro "page"
-	getAllPerson(page) {
-		return People.get(`?page=${ page }`)
+	async getAllPerson(page) {
+		return await People.get(`?page=${ page }`)
 	},
 	// Retorna um personagem especifico de acordo com o nome passado como parametro "name"
 	getPeopleByName(name) {

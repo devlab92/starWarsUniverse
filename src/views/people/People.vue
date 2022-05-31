@@ -1,10 +1,12 @@
 <template>
 	<section>
-		<Loading :loadingVerify="loading" />
 		<h1>Personagens</h1>
-		<div>
-			<div v-for="(person, idx) in people" :key="'key_'+idx">
-				<Card :infos="person" />
+			<Pagination :allPages="lastPage" @page="searchPage = $event"/>
+		<div class="cards">
+			<div v-for="(person, idx) in people" :key="'key_'+idx" class="cards__renderCards">
+				<div class="renderCards__card">
+					<Card :infos="person" />
+				</div>
 			</div>
 			<span ref="sentinel" id="sentinel"></span>
 		</div>
@@ -19,20 +21,21 @@
 		}">EDITAR USUARIO </router-link>-->
 
 		<button @click="loading = !loading">Loading</button>
+		<Loading :loadingVerify="loading" />
 	</section>
 </template>
 
 <script>
 import People from '../../services/People'
-import Starships from '../../services/Starships'
 import Card from '../../components/Card.vue'
-import globalFn from '../../services/GlobalFunctions'
 import Loading from '../../components/Loading.vue'
+import Pagination from '../../components/Pagination.vue'
 export default {
 	name: "People",
 	components: {
 		Card,
-		Loading
+		Loading,
+		Pagination
 	},
 	data() {
 		return {
@@ -41,23 +44,32 @@ export default {
 			selectedPerson: {},
 			showingPerson: false,
 			page: 1,
-			lastPage: 0,
+			lastPage: 1,
 			images: [],
+			searchPage: ''
+		}
+	},
+	watch:{
+		searchPage(){
+			this.page = this.searchPage
+			this.people = []
+			this.getAllPerson() 
 		}
 	},
 	beforeMount() {
-		// this.getAllPerson()
-		this.people = globalFn.fillArrayPeople()
+		this.getAllPerson()
+		// this.people = globalFn.fillArrayPeople()
 	},
-	// mouted() {
-	// 	this.scrollTrigger()
-	// },
+	mouted() {
+		this.scrollTrigger()
+	},
 	computed: {
 
 	},
 	methods: {
-
 		scrollTrigger() {
+			console.log('scrollTrigger')
+
 			const sentinel = new IntersectionObserver((entries) => {
 				if (entries.some((entry) => entry.isIntersecting)) {
 					setTimeout(() => {
@@ -67,12 +79,16 @@ export default {
 			})
 
 			sentinel.observe(this.$refs.sentinel)
-			this.getAllPerson()
 			return () => IntersectionObserver.disconnect()
 		},
 
 		async getAllPerson() {
 			this.loading = true
+
+			if(this.page > this.lastPage){
+				this.loading = false
+				return
+			}
 			await People.getAllPerson(this.page)
 				.then((res) => {
 					res.data.results.map(person => {
@@ -83,33 +99,47 @@ export default {
 							person.image = res
 						})
 
-						let starships = []
-						// Verifica se o personagem pilota alguma nave e entao adiciona a nave
-						if (person.starships) {
-							person.starships.map(el => {
-								Starships.getStartshipById(globalFn.getUrlId(el))
-									.then((res) => {
-										starships.push(res.data)
-									})
-							})
-							person.starships = starships
-						}
 					})
 					this.lastPage = res.data.count % 10 == 0 ? res.data.count : Math.trunc(res.data.count / 10 + 1)
 					this.page++
 					this.loading = false
 				})
 
+			// Chama a rota ate que a sentinela suma da tela, ou seja, que tenha persoagens até criar barra de rolagem 
+			// Assim escondendo a sentinela e quando a tela é rolada para baixo o Observer começa a funcionar.
+				
 			// let attScroll = document.getElementById('sentinel')
-			// // Chama a rota ate que a sentinela suma da tela, ou seja, que tenha persoagens até criar barra de rolagem 
-			// // Assim escondendo a sentinela e quando a tela é rolada para baixo o Observer começa a funcionar.				
 			// if (this.page <= this.lastPage && attScroll.scrollHeight <= attScroll.clientHeight) {
-			// 		this.getAllPerson()
+			// 	this.loading = true
+			// 	// this.getAllPerson()
 			// }
+			this.loading = false
 		}
 	}
 }
 </script>
 
 <style scoped>
+.cards {
+	display: flex;
+	flex-direction: row;
+	flex-wrap: wrap;
+}
+.cards__renderCards {
+	max-width: calc(50% - 4px);
+	transition: all 0.2s;
+}
+.cards__renderCards:hover {
+	box-shadow: 0 0 10px 1px rgb(255, 255, 0);
+}
+.renderCards__card {
+	padding: 5px;
+}
+
+@media (max-width: 767px) {
+	.cards__renderCards {
+		max-width: 100%;
+		transition: all 0.2s;
+	}
+}
 </style>

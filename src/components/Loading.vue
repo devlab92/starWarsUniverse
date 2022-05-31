@@ -2,6 +2,8 @@
 	<transition name="load">
 		<div class="loading" v-if="loadingVerify">
 			<p class="loading__paragraph">Carregando...</p>
+			<i class="fa fa-spinner fa-pulse fa-2x"></i>
+			
 		</div>
 	</transition>
 </template>
