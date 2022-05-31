@@ -1,24 +1,16 @@
 <template>
 	<section>
+		<Loading :loadingVerify="loading" />
 		<h1>Personagens</h1>
-		<ul>
-			<li v-for="(person, idx) in people" @click="showPerson(person.name)" :key="'key_'+idx">
-				<!-- <div> <button @click="getPersonImg(person)">IMG</button> {{person.name}}</div> -->
-				<div>
-					<button @click="getPersonImg(person)">IMG</button>
-					{{person.name}}
-				</div>
-				<div v-if="person.name == selectedPerson.name && showingPerson">
-					<!-- <Person :person="selectedPerson" /> -->
-					<Card :infos="person" />
-				</div>
-			</li>
-			<li ref="sentinel" id="sentinel"></li>
-		</ul>
+		<div>
+			<div v-for="(person, idx) in people" :key="'key_'+idx">
+				<Card :infos="person" />
+			</div>
+			<span ref="sentinel" id="sentinel"></span>
+		</div>
 
-		<button @click="getAllPerson()">Mais personagens</button>
-		<h2>Personagem :</h2>
-		{{ selectedPerson.name }}
+		<button @click="getAllPerson()">Mais Personagens</button>
+
 		<!-- Nessa router-link esta sendo chamado a tela pelo NAME, passando o ID como PARAMETROS na URL e enviando algumas infos via QUERY -->
 		<!-- <router-link tag="button" :to="{
 			name: 'EditUser', 
@@ -26,38 +18,36 @@
 			query: {idade: '25', name: 'Ricardo'}
 		}">EDITAR USUARIO </router-link>-->
 
-		<div v-for="img in images" style>
-			<br />
-			<img :src="img" width="200px" height="auto" />
-			<br />
-		</div>
+		<button @click="loading = !loading">Loading</button>
 	</section>
 </template>
 
 <script>
 import People from '../../services/People'
 import Starships from '../../services/Starships'
-import Person from '../../components/people/Person.vue'
 import Card from '../../components/Card.vue'
 import globalFn from '../../services/GlobalFunctions'
+import Loading from '../../components/Loading.vue'
 export default {
 	name: "People",
 	components: {
-		Person,
-		Card
+		Card,
+		Loading
 	},
 	data() {
 		return {
+			loading: false,
 			people: [],
 			selectedPerson: {},
 			showingPerson: false,
 			page: 1,
 			lastPage: 0,
-			images: []
+			images: [],
 		}
 	},
 	beforeMount() {
-		this.getAllPerson()
+		// this.getAllPerson()
+		this.people = globalFn.fillArrayPeople()
 	},
 	// mouted() {
 	// 	this.scrollTrigger()
@@ -82,6 +72,7 @@ export default {
 		},
 
 		async getAllPerson() {
+			this.loading = true
 			await People.getAllPerson(this.page)
 				.then((res) => {
 					res.data.results.map(person => {
@@ -106,6 +97,7 @@ export default {
 					})
 					this.lastPage = res.data.count % 10 == 0 ? res.data.count : Math.trunc(res.data.count / 10 + 1)
 					this.page++
+					this.loading = false
 				})
 
 			// let attScroll = document.getElementById('sentinel')

@@ -7,7 +7,7 @@
 
 <script>
 export default {
-  name: 'Person',
+  name: 'Vehicle',
   props:['person']
 
 }

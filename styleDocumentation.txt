@@ -1,0 +1,6 @@
+Cor padrão da fonte: #F0F0F0
+Tamanho padrão da fonte: 16px
+Fonte padrão: Nunito, Nunito-italic, Nunito-SemiBold, Nunito-SemiBoldItalic, Nunito-ExtraBold, Nunito-ExtraBoldItalic
+Fonte títulos:
+	h1: Nunito-ExtraBold
+	h2 até h6: Nunito-SemiBold
