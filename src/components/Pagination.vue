@@ -22,7 +22,6 @@ export default {
 	flex-direction: row;
 	flex-wrap: wrap;
 	justify-content: flex-end;
-	padding: 0 15px;
 }
 .pagesButton__button{
 	padding: 10px 15px;
@@ -38,5 +37,11 @@ export default {
 }
 .pagesButton__button:hover, .pagesButton__button:focus{
 	box-shadow: 0 0 10px 0px gold;
+}
+
+@media (max-width: 479px) {
+	.pagesButton{
+		justify-content: center;
+	}
 }
 </style>

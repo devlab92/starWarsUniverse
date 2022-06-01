@@ -1,32 +1,34 @@
 <template>
-	<div id="card" class="card flex">
+	<div id="card">
 		<Loading :loadingVerify="loading" />
-		<div id="image" class="card__image flex" @click="selectedInfos = infos; showMoreFn()">
-			<div class="flex">
-				<img :src="infos.image" class="card__image--img" :alt="'Foto de ' + infos.name" />
+		<div class="card flex" @click.prevent="selectedInfos = infos; showMoreFn()">
+			<div id="image" class="card__image flex">
+				<div class="flex">
+					<img :src="infos.image" class="card__image--img" :alt="'Foto de ' + infos.name" />
 
-				<div class="card__image--label flex">
-					<p>{{ infos.name }}</p>
+					<div class="card__image--label flex">
+						<p>{{ infos.name }}</p>
+					</div>
 				</div>
 			</div>
-		</div>
-		<div id="infos" class="infos flex">
-			<div id="person" class="infos__list">
-				<h3>Data nascimento</h3>
-				<p>{{infos.birth_year != 'unknown' ? infos.birth_year : 'desconhecido'}}</p>
-				<h3>Filmes</h3>
-				<p>Participou de {{infos.films.length > 1 ? infos.films.length+' filmes' : '1 filme'}}</p>
-				<h3>Caracteristicas físicas</h3>
-				<p>
-					Possui olhos de cor {{translateToPt(infos.eye_color)}},
-					cabelo {{translateToPt(infos.hair_color)}},
-					altura {{infos.height != 'unknown' ? infos.height+' cm' : 'desconhecido'}}
-					e seu peso é {{infos.mass != 'unknown' ? infos.mass+' quilos' : 'desconhecido'}}.
-				</p>
-			</div>
-			<!-- <div id="starship"></div>
+			<div id="infos" class="infos flex">
+				<div id="person" class="infos__list">
+					<h3>Data nascimento</h3>
+					<p>{{infos.birth_year != 'unknown' ? infos.birth_year : 'desconhecido'}}</p>
+					<h3>Filmes</h3>
+					<p>Participou de {{infos.films.length > 1 ? infos.films.length+' filmes' : '1 filme'}}</p>
+					<h3>Caracteristicas físicas</h3>
+					<p>
+						Possui olhos de cor {{translateToPt(infos.eye_color)}},
+						cabelo {{translateToPt(infos.hair_color)}},
+						altura {{infos.height != 'unknown' ? infos.height+' cm' : 'desconhecido'}}
+						e seu peso é {{infos.mass != 'unknown' ? infos.mass+' quilos' : 'desconhecido'}}.
+					</p>
+				</div>
+				<!-- <div id="starship"></div>
 			<div id="specie"></div>
-			<div id="vehicle"></div>-->
+				<div id="vehicle"></div>-->
+			</div>
 		</div>
 		<transition>
 			<div v-if="showMore" id="moreDetails" class="moreDetails flex">
@@ -136,6 +138,7 @@ export default {
 	width: 100%;
 	height: 300px;
 	justify-content: left;
+	cursor: pointer;
 }
 .card__image {
 	margin: 10px;
@@ -225,11 +228,11 @@ export default {
 	}
 }
 @media (max-width: 479px) {
-	.infos__list p{
+	.infos__list p {
 		font-size: 0.85em;
 	}
-	.infos__list h3{
-		font-size: .80em;
+	.infos__list h3 {
+		font-size: 0.8em;
 	}
 }
 </style>

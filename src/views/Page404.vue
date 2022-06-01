@@ -1,14 +1,14 @@
 <template>
 	<section>
-		<Menu/>
+		<h1>Nada por aqui!</h1>
+		<router-link class="backToHome" tag="div" :to="{name: 'Home'}">
+			<p>Voltar para Home</p>
+		</router-link>
 	</section>
 </template>
 
 <script>
-import Menu from '../components/Menu.vue'
 export default {
-	components: { Menu },
-	name: "Home"
 }
 </script>
 

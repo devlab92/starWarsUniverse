@@ -18,18 +18,17 @@ export default {
 	getPeopleByName(name) {
 		return People.get(`?search=${ name }`)
 	},
-	async getPersonImg(person) {
-		let link = ''
+	getPersonImg(person) {
 			// Verifica qual api de imagens deve usar
 			if (localStorage.getItem('apiSelected') == 'google') {
-				await GoogleApi.googleSearch(person.name)
+				GoogleApi.googleSearch(person.name)
 					.then((res) => {
-						link =res.data.items[0].link
+						 return res.data.items[0].link
 					})
-			} else
-				link = `${ visualGuideApi.baseUrl + visualGuideApi.search.characters + globalFn.getUrlId(person.url) }.jpg`
+			} else{
+				return `${ visualGuideApi.baseUrl + visualGuideApi.search.characters + globalFn.getUrlId(person.url) }.jpg`				
+			}
 
-			return link
 	}
 
 }

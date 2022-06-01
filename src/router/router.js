@@ -17,22 +17,73 @@ export default new VueRouter({
 			components: {
 				default: () => import('../views/people/People.vue')
 			},
-			// essa chave PROPS significa que todos os parametros dessa rota serao enviado como PROPS para a tela que chamar
 			props: true,
-			// children: [
-			// 	{path:'', props: true, component: () => import('../views/user/UserList')},
-			// 	{path:'/detailedUser/:id', props: true, component: () => import('../views/user/DetailedUser'),
-			// 		name: 'DetailedUser'}
-			// ]
 		},
 		{
-			path: '/redirect',
-			redirect: '/'
+			path: '/planets',
+			name: 'Planets',
+			redirect: 'PageInConstruction',
+			// components: {
+			// 	default: () => import('../views/planets/Planets.vue')
+			// },
+		},
+		{
+			path: '/species',
+			name: 'Species',
+			redirect: 'PageInConstruction',
+			// components: {
+			// 	default: () => import('../views/species/Species.vue')
+			// },
+		},
+		{
+			path: '/films',
+			name: 'Films',
+			redirect: 'PageInConstruction'
+			// components: {
+			// 	default: () => import('../views/films/Films.vue')
+			// },
+		},
+		{
+			path: '/vehicles',
+			name: 'Vehicles',
+			redirect: 'PageInConstruction'
+			// components: {
+			// 	default: () => import('../views/vehicles/Vehicles.vue')
+			// },
+		},
+		{
+			path: '/favorits',
+			name: 'Favorits',
+			redirect: 'PageInConstruction',
+			// components: {
+			// 	default: () => import('../views/favorits/Favorits.vue')
+			// }
+
+		},
+		{
+			path: '/pageInConstruction',
+			name: 'PageInConstruction',
+			components: {
+				default: () => import('../views/PageInConstruction.vue')
+			},
+			props: true,
+		},
+		{
+			path: '/page404',
+			name: 'Page404',
+			components: {
+				default: () => import('../views/Page404.vue')
+			},
+			props: true,
+		},
+		{
+			path: '/films',
+			redirect: 'PageInConstruction'
 		},
 		// Quando qualquer URL que nao existir for chamada, ela e redirecionada
 		{
 			path: '*',
-			redirect: '/'
+			redirect: 'Page404'
 		}
 
 
