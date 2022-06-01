@@ -11,5 +11,13 @@ Para obter as informações será consumido as api's da [SWAPI](https://swapi.de
 - [Font Awesome](fontawesome.com)
 - [BEM](http://getbem.com/introduction/) para metodologia de nomenclaturas em CSS.
 
+# Cloud
+
+É possível acessar o projeto via Nuvem nos seguintes links
+- [gitHub Page](https://devlab92.github.io)
+- [Heroku](https://lab92-starwars-universe.herokuapp.com)
+
+
 # Instalação
  Clone o projeto em sua máquina local. O projeto encontra-se no meu meu gitHub em [StarWars Universe](https://github.com/devlab92/starWarsUniverse). Instale as dependências `npm install` e rode o projeto `npm run serve` 
+ 
