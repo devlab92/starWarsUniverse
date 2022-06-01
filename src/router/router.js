@@ -77,8 +77,8 @@ export default new VueRouter({
 			props: true,
 		},
 		{
-			path: '/films',
-			redirect: 'PageInConstruction'
+			path: '/starWarsUniverse_build',
+			redirect: '/'
 		},
 		// Quando qualquer URL que nao existir for chamada, ela e redirecionada
 		{
