@@ -3,8 +3,8 @@
 		<div class="title">
 			<h1>Personagens</h1>
 			<router-link class="backToHome" tag="div" :to="{name: 'Home'}">
-			<p>Voltar para Home</p>
-		</router-link>
+				<p>Voltar para Home</p>
+			</router-link>
 		</div>
 		<div class="flex paginationGroup">
 			<div class="flex paginationGroup__morePeople" @click="getAllPerson()">
@@ -94,7 +94,7 @@ export default {
 						this.people.push(person)
 
 						//Adiciona a imagem do personagem 
-						 person.image = People.getPersonImg(person)
+						person.image = People.getPersonImg(person)
 
 					})
 					this.lastPage = res.data.count % 10 == 0 ? res.data.count : Math.trunc(res.data.count / 10 + 1)
@@ -117,10 +117,10 @@ export default {
 </script>
 
 <style scoped>
-.title{
+.title {
 	text-align: center;
 	font-size: 1.3em;
-	font-family: 'Nunito-SemiBold' !important;
+	font-family: "Nunito-SemiBold" !important;
 }
 .cards {
 	display: flex;
@@ -134,8 +134,6 @@ export default {
 }
 .cards__renderCards:hover {
 	box-shadow: 0 0 10px 1px rgb(255, 255, 0);
-}
-.renderCards__card {
 }
 .paginationGroup {
 	justify-content: space-between;

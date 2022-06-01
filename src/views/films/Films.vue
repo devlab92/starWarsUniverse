@@ -9,7 +9,7 @@ import Card from '../../components/Card.vue'
 import Loading from '../../components/Loading.vue'
 import Pagination from '../../components/Pagination.vue'
 export default {
-	name: "Favorits",
+	name: "Films",
 	components: {
 		Card,
 		Loading,
