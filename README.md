@@ -14,7 +14,7 @@ Para obter as informações será consumido as api's da [SWAPI](https://swapi.de
 # Cloud
 
 É possível acessar o projeto via Nuvem nos seguintes links
-- [gitHub Page](https://devlab92.github.io)
+- [gitHub Page](https://devlab92.github.io/starWarsUniverse_build/)
 - [Heroku](https://lab92-starwars-universe.herokuapp.com)
 
 
