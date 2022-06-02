@@ -1,13 +1,15 @@
 <template>
 	<section>
-		<Menu/>
+		<div class="flex">
+				<font-logo/>
+		</div>
 	</section>
 </template>
 
 <script>
-import Menu from '../components/Menu.vue'
+import FontLogo from '@/components/FontLogo.vue'
 export default {
-	components: { Menu },
+	components: { FontLogo },
 	name: "Home"
 }
 </script>

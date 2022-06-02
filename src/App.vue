@@ -1,15 +1,15 @@
 <template>
 	<div id="app">
-		<nav>
-			<!-- <router-link to="/">Home</router-link> |
-			<router-link to="/about">About</router-link>-->
-		</nav>
+		<Menu />
 		<router-view />
 	</div>
 </template>
 <script>
 import 'font-awesome/css/font-awesome.css'
+import Menu from './components/Menu.vue'
 export default {
+	components: {Menu},
+	name: 'App'
 }
 </script>
 <style>
@@ -22,6 +22,12 @@ body {
 
 p {
 	margin: 0;
+}
+
+a,
+a:visited,
+a:hover {
+	text-decoration: none;
 }
 
 #app {

@@ -19,5 +19,10 @@ Para obter as informações será consumido as api's da [SWAPI](https://swapi.de
 
 
 # Instalação
+ 
  Clone o projeto em sua máquina local. O projeto encontra-se no meu meu gitHub em [StarWars Universe](https://github.com/devlab92/starWarsUniverse). Instale as dependências `npm install` e rode o projeto `npm run serve` 
+
+ 
+ # Consideração
+A api da google possui um limite de requests, ao optar pelo repositório dela, pode ocorrer de não carregar as imagens por esse motivo. 
  
