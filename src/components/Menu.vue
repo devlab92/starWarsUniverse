@@ -231,10 +231,6 @@ export default {
 }
 
 @media (max-height: 720px) {
-	.menuBody {
-		/* overflow-y: scroll;
-		overflow-x: hidden; */
-	}
 	.menuBody__header h2 {
 		font-size: 0.8em;
 	}
