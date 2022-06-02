@@ -24,5 +24,5 @@ Para obter as informações será consumido as api's da [SWAPI](https://swapi.de
 
  
  # Consideração
-A api da google possui um limite de requests, ao optar pelo repositório dela, pode ocorrer de não carregar as imagens por esse motivo. 
+A api da google possui um limite de requests, ao optar pelo repositório dela pode ocorrer de não carregar as imagens por esse motivo. 
  
